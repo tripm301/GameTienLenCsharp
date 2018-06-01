@@ -1,0 +1,9 @@
+E:\GITHUB\TienLenCsharp\CLIENT\bin\Debug\CLIENT.exe
+E:\GITHUB\TienLenCsharp\CLIENT\bin\Debug\CLIENT.pdb
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.csprojAssemblyReference.cache
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.MainForm.resources
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.Properties.Resources.resources
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.GenerateResource.cache
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.CoreCompileInputs.cache
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.exe
+E:\GITHUB\TienLenCsharp\CLIENT\obj\Debug\CLIENT.pdb
