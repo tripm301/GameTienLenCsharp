@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 
 namespace TINH_TONG_2_SO___ANTT
@@ -9,10 +10,18 @@ namespace TINH_TONG_2_SO___ANTT
     {
         int soThuTu;
         int soPlayer;
+        SocketModel[] arrSocket = new SocketModel[4];
         public Table()
         {
             soThuTu = 0;
             soPlayer = 0;
+        }
+        //Cập nhật socket khi có client mới join bàn chơi
+        void UpdateSocketTable(Socket a)
+        {
+            SocketModel tem = new SocketModel(a);
+            int vitri = soPlayer - 1;
+            arrSocket[vitri] = tem;
         }
         //get table
         public int GetSoThuTuTable()

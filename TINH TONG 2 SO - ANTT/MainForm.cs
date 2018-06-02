@@ -69,12 +69,28 @@ namespace TINH_TONG_2_SO___ANTT
 		public void PhucVuYeuCau(Object obj){
 			int index = (Int32) obj;
             //phuc vu client nhieu lan
-            int z = 0;//đếm để vào vòng lặp if else tránh gửi bộ bài thêm lần nữa
+            string CHECK = "";//đếm để vào vòng lặp if else tránh gửi bộ bài thêm lần nữa
             while (true) {
                 //nhan yeu cau va cap nhat giao dien				
                 string str1 = socket[index].ReceiveData(); //Nhan yeu cau tu client (switch..)
-                textBox4.Text ="socket "+index.ToString()+"  "+ str1;
-                if (z == 0)
+                string CheckString=index.ToString() + "_" + str1;//Cái đầu tiên là socket của client nào gửi ví dụ 0_join là socket 0
+                textBox4.Text =index.ToString()+"_"+ str1;
+                string[] arrStr = str1.Split('_');
+                CHECK = arrStr[0];
+                switch (CHECK)
+                {
+                    case "START":
+                        {
+                            Start();
+                            break;
+                        }
+                    case "JOIN":
+                        {
+                            Join(index);
+                            break;
+                        }
+                }
+                /*if (CHECK == "START")
                 {
                     CardSet cardSet = new CardSet(); //tao bo bai
                     Random random = new Random();
@@ -140,11 +156,87 @@ namespace TINH_TONG_2_SO___ANTT
                     {
                         socket[0].SendData(data1);
                     }
-                    z++;
-                }
+                    
+                }*/
 
             }
 		}
+        
+        void Join(int index)
+        {
+            for(int i = 0; i < index; i++)
+            {
+                socket[i].SendData("JOIN");
+            }
+
+        }
+        void Start()
+        {
+            CardSet cardSet = new CardSet(); //tao bo bai
+            Random random = new Random();
+            Boolean duplicate = false; //bien kt random trung
+            int[] arr = new int[52]; //Tao mang 52 phan tu de luu nhung so random
+            string data1 = "START_";
+            string data2 = "START_";
+            string data3 = "START_";
+            string data4 = "START_";
+            for (int i = 0; i < 52; i++)
+            {
+                do
+                {
+                    duplicate = false;
+                    int j = random.Next(1, 53); //random 1 so, kt so do co chua, neu co roi thi random lai
+                    if (Timx(arr, j) == false)
+                    {
+                        if (i < 13)
+                        {
+                            data1 += cardSet.output(cardSet.GetCard(j - 1));
+                        }
+                        else
+                        if (i < 26)
+                        {
+                            data2 += cardSet.output(cardSet.GetCard(j - 1));
+                        }
+                        else
+                        if (i < 39)
+                        {
+                            data3 += cardSet.output(cardSet.GetCard(j - 1));
+                        }
+                        else
+                        {
+                            data4 += cardSet.output(cardSet.GetCard(j - 1));
+                        }
+                        arr[i] = j;
+                        duplicate = true;
+                    }
+                }
+                while (duplicate == false);
+            }
+
+            if (soClientHienTai == 4)
+            {
+                socket[0].SendData(data1);
+                socket[1].SendData(data2);
+                socket[2].SendData(data3);
+                socket[3].SendData(data4);
+
+            }
+            else if (soClientHienTai == 3)
+            {
+                socket[0].SendData(data1);
+                socket[1].SendData(data2);
+                socket[2].SendData(data3);
+            }
+            else if (soClientHienTai == 2)
+            {
+                socket[0].SendData(data1);
+                socket[1].SendData(data2);
+            }
+            else //th nay khong cho phep..de test thoi
+            {
+                socket[0].SendData(data1);
+            }
+        }
 		public void UpdateTablePlayer(int soClientHienTai)
         {
             int z = 0;
@@ -156,7 +248,7 @@ namespace TINH_TONG_2_SO___ANTT
                 z = 1;
             }
             else { table[soTableNow].Update1Player(); }
-            if (table[soTableNow].GetSoPlayer() == 4)
+            if (table[soTableNow].GetSoPlayer() > 4)
             {
                 table[soTableNow + 1].Update1Player();
                 soTableNow += 1;
@@ -164,6 +256,14 @@ namespace TINH_TONG_2_SO___ANTT
             string data;
             data = "TABLE" + '_' + table[soTableNow].GetSoThuTuTable().ToString() + table[soTableNow].GetSoPlayer().ToString();
             socket[soClientHienTai - 1].SendData(data);
+        }
+        public void SendDataPlayer(int soclient,int socketGui)
+        {
+            for(int i = 0; i < soclient; i++)
+            {
+                string str = "UPDATETABLE" + '_' + i;
+              
+            }
         }
 		public void MultiScript(){
 			//Phuc vu nhieu PHIEN client

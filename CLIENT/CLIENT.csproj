@@ -123,6 +123,8 @@
     <Content Include="Resources\KC.JPG" />
     <Content Include="Resources\KH.JPG" />
     <Content Include="Resources\KR.JPG" />
+    <None Include="Resources\Player.jpg" />
+    <None Include="Resources\Me.png" />
     <Content Include="Resources\PP.JPG" />
     <Content Include="Resources\QB.JPG" />
     <Content Include="Resources\QC.JPG" />
