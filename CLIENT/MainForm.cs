@@ -36,11 +36,11 @@ namespace CLIENT
         private void button3_Click(object sender, EventArgs e) //Nut xếp bài
         {
             TurnOffCardTop();
-            for (int i = 0; i < cards.Length; i++)
+            for (int i = 12; i >= (13-soBaiConLai); i--)
             {
-                for (int j = i + 1; j < cards.Length; j++)
+                for (int j = i-1; j >= (13-soBaiConLai); j--)
                 {
-                    if (cards[j].GetGt() < cards[i].GetGt())
+                    if (cards[j].GetGt() > cards[i].GetGt() )
                     {
                         //cach trao doi gia tri
                         Card tmp = new Card();
@@ -52,8 +52,9 @@ namespace CLIENT
             }
             DrawSetCard();
             TurnOnCardBot();
-            ResetChooseCard(soBaiConLai);
+            ResetChooseCard();
         }
+
 
         private void pictureBox12_Click(object sender, EventArgs e)
         {
@@ -268,6 +269,8 @@ namespace CLIENT
         private void button4_Click(object sender, EventArgs e) //Nút đánh
         {
             string data = null;
+
+            
             foreach (Card item in chooseCard)
             {
                 if (item != null)

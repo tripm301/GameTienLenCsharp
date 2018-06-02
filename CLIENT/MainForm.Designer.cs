@@ -775,6 +775,7 @@ namespace CLIENT
 		private TCPModel tcp;
         private Card[] cards = new Card[13];
         private Card[] chooseCard = new Card[13];
+        private Card[] cardPlay = new Card[13];
         private int chooseCardNumber = 0;
         private int soBaiConLai = 13;
         private string baiDanh = null;
@@ -834,9 +835,9 @@ namespace CLIENT
 			int flag = tcp.SendData(str);
 		}
 
-        void ResetChooseCard(int soBaiConLai)
+        void ResetChooseCard()
         {
-            chooseCard = new Card[soBaiConLai];
+            chooseCard = new Card[13];
         }
 
 
@@ -849,23 +850,60 @@ namespace CLIENT
                 string[] str = data.Split('_');
                 if (str[0] == "TABLE")
                 {
-                    
-                    
-                    
+
 
                 }
 
                 else
                 {
                     NhanBai(data);
-
+                    PostCardPlaying(data);
                     DrawSetCard();
-
                 }
 
             }
         }
 
+        public void PostCardPlaying(string data)
+        {
+            int i = 0;
+            Card card = new Card();
+
+            string[] arrListStr = data.Split('_');
+            foreach (string item in arrListStr)
+            {
+                if (i == 13)
+                {
+                    break;
+                }
+                cardPlay[i] = card.input(item);
+                i++;
+            }
+
+            pictureBox27.Image = DrawCard(cardPlay[0]);
+            pictureBox28.Image = DrawCard(cardPlay[1]);
+            pictureBox29.Image = DrawCard(cardPlay[2]);
+            pictureBox30.Image = DrawCard(cardPlay[3]);
+            pictureBox31.Image = DrawCard(cardPlay[4]);
+            pictureBox32.Image = DrawCard(cardPlay[5]);
+            pictureBox33.Image = DrawCard(cardPlay[6]);
+            pictureBox34.Image = DrawCard(cardPlay[7]);
+            pictureBox35.Image = DrawCard(cardPlay[8]);
+            pictureBox36.Image = DrawCard(cardPlay[9]);
+            pictureBox37.Image = DrawCard(cardPlay[10]);
+            pictureBox38.Image = DrawCard(cardPlay[11]);
+            pictureBox39.Image = DrawCard(cardPlay[12]);
+        }
+
+        public void DeletePictureBox()
+        {
+            pictureBox27.Image = null;
+            pictureBox27.Image = null;
+            pictureBox27.Image = null;
+            pictureBox27.Image = null;
+            pictureBox27.Image = null;
+            pictureBox27.Image = null;
+        }
         public void DrawSetCard()
         {
             pictureBox1.Image = DrawCard(cards[0]);
@@ -933,19 +971,20 @@ namespace CLIENT
                 if(chooseCard[i] != null)
                 {
                     cards[i] = null;
+                    soBaiConLai--;
                 }
             }
             //Cập nhật lại bài hiện có
-            int x = 0;
-            foreach (Card item in cards)
+            int x = 12;
+            for(int i = 12; i >= 0; i--)
             {
-                if(item != null)
+                if(cards[i] != null)
                 {
-                    arrTemp2[x] = item;
-                    x++;
+                    arrTemp2[x] = cards[i];
+                    x--;
                 }
             }
-            soBaiConLai = x;
+            
             
             for (int i = 0; i < 13; i++)
             {
@@ -961,9 +1000,7 @@ namespace CLIENT
             }
             TurnOffCardTop();
             DrawSetCard();
-            ResetChooseCard(13);
-
-
+            ResetChooseCard();
         }
 
         // Hàm chấp nhận table nhận diện bàn chơi
@@ -979,12 +1016,12 @@ namespace CLIENT
             string[] arrListStr = data.Split('_');
             foreach (string item in arrListStr)
             {
-                cards[i] = card.input(item);
-                i++;
                 if (i == 13)
                 {
                     break;
                 }
+                cards[i] = card.input(item);
+                i++;
             }
         }
 
