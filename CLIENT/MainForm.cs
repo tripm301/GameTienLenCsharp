@@ -14,26 +14,26 @@ using TINH_TONG_2_SO___ANTT;
 
 namespace CLIENT
 {
-	/// <summary>
-	/// Description of MainForm.
-	/// </summary>
-	public partial class MainForm : Form
-	{
-		public MainForm()
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
+    /// <summary>
+    /// Description of MainForm.
+    /// </summary>
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
 
-       
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
+        }
 
-        private void button3_Click(object sender, EventArgs e) //xếp bài
+
+
+        private void button3_Click(object sender, EventArgs e) //Nut xếp bài
         {
             TurnOffCardTop();
             for (int i = 0; i < cards.Length; i++)
@@ -50,19 +50,7 @@ namespace CLIENT
                     }
                 }
             }
-            pictureBox1.Image = DrawCard(cards[0]);
-            pictureBox2.Image = DrawCard(cards[1]);
-            pictureBox3.Image = DrawCard(cards[2]);
-            pictureBox4.Image = DrawCard(cards[3]);
-            pictureBox5.Image = DrawCard(cards[4]);
-            pictureBox6.Image = DrawCard(cards[5]);
-            pictureBox7.Image = DrawCard(cards[6]);
-            pictureBox8.Image = DrawCard(cards[7]);
-            pictureBox9.Image = DrawCard(cards[8]);
-            pictureBox10.Image = DrawCard(cards[9]);
-            pictureBox11.Image = DrawCard(cards[10]);
-            pictureBox12.Image = DrawCard(cards[11]);
-            pictureBox13.Image = DrawCard(cards[12]);
+            DrawSetCard();
             TurnOnCardBot();
             ResetChooseCard(soBaiConLai);
         }
@@ -277,19 +265,26 @@ namespace CLIENT
             chooseCard[0] = null;
         }
 
-        private void button4_Click(object sender, EventArgs e) //đánh
+        private void button4_Click(object sender, EventArgs e) //Nút đánh
         {
             string data = null;
             foreach (Card item in chooseCard)
             {
-                if(item != null)
+                if (item != null)
                 {
                     data += (item.GetID(item) + "_");
+                    chooseCardNumber++;
                 }
-                
             }
             baiDanh = data;
             tcp.SendData(baiDanh);
+
+            //*****
+            PostCard();
+        }
+
+        private void btnBoLuoc_Click(object sender, EventArgs e)
+        {
 
         }
     }
