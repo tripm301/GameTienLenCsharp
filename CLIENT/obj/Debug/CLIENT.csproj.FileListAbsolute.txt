@@ -1,9 +1,0 @@
-E:\GITHUB\GameTienLenCsharp\CLIENT\bin\Debug\CLIENT.exe
-E:\GITHUB\GameTienLenCsharp\CLIENT\bin\Debug\CLIENT.pdb
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csprojAssemblyReference.cache
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.MainForm.resources
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.Properties.Resources.resources
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.GenerateResource.cache
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.CoreCompileInputs.cache
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.exe
-E:\GITHUB\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.pdb
