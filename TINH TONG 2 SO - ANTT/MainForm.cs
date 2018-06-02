@@ -40,6 +40,9 @@ namespace TINH_TONG_2_SO___ANTT
 		private TCPModel tcp;
 		private SocketModel[] socket = new SocketModel[100];
 		private int soClientHienTai = 0;
+        private int soClientJoinTable = 0; //Số client đã tham gia vào bàn chơi
+        private Table[] table=new Table[10];
+        private int soTableNow=0;//Đối tượng bàn trong game
 		
 		public void KhoiDongServer(){			
 			tcp = new TCPModel(textBox1.Text,int.Parse(textBox2.Text));
@@ -142,13 +145,32 @@ namespace TINH_TONG_2_SO___ANTT
 
             }
 		}
-		
+		public void UpdateTablePlayer(int soClientHienTai)
+        {
+            int z = 0;
+            if (z == 0)
+            {
+                table[soTableNow] = new Table();
+                table[soTableNow].SetSoPlayer(soClientJoinTable+1);
+                soClientJoinTable += 1;
+                z = 1;
+            }
+            else { table[soTableNow].Update1Player(); }
+            if (table[soTableNow].GetSoPlayer() == 4)
+            {
+                table[soTableNow + 1].Update1Player();
+                soTableNow += 1;
+            }
+            string data;
+            data = "TABLE" + '_' + table[soTableNow].GetSoThuTuTable().ToString() + table[soTableNow].GetSoPlayer().ToString();
+            socket[soClientHienTai - 1].SendData(data);
+        }
 		public void MultiScript(){
 			//Phuc vu nhieu PHIEN client
 			while (true){
 				//Step 2.1: Cho va chap nhan ket noi tu client
 				ChapNhanKetNoi();
-				
+                UpdateTablePlayer(soClientHienTai);
 				//Step 2.2: Phuc vu yeu cau	
 				Thread t = new Thread(PhucVuYeuCau);
 				t.Start(soClientHienTai-1);			
