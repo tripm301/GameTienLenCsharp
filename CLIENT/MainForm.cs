@@ -33,7 +33,7 @@ namespace CLIENT
 
        
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //xếp bài
         {
             TurnOffCardTop();
             for (int i = 0; i < cards.Length; i++)
@@ -277,7 +277,7 @@ namespace CLIENT
             chooseCard[0] = null;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) //đánh
         {
             string data = null;
             foreach (Card item in chooseCard)
