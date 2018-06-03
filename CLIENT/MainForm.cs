@@ -268,21 +268,44 @@ namespace CLIENT
 
         private void button4_Click(object sender, EventArgs e) //Nút đánh
         {
-<<<<<<< HEAD
-            string data = "DANH_";
-=======
-            string data = null;
 
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
-            
+            string data = "DANH_";
+
+            //string data = null;
+            Card[] arrTemp = new Card[13];
+
+            int x = 12;
             foreach (Card item in chooseCard)
             {
-                if (item != null)
+                if(item != null)
+                {
+                    arrTemp[x] = item;
+                    x--;
+                }
+            }
+            for (int i = 12; i > x; i--)
+            {
+                for (int j = i - 1; j > x; j--)
+                {
+                    if (arrTemp[j].GetGt() > arrTemp[i].GetGt())
+                    {
+                        //cach trao doi gia tri
+                        Card tmp = new Card();
+                        tmp = arrTemp[i];
+                        arrTemp[i] = arrTemp[j];
+                        arrTemp[j] = tmp;
+                    }
+                }
+            }
+            foreach (Card item in arrTemp)
+            {
+                if(item != null)
                 {
                     data += (item.GetID(item) + "_");
                     chooseCardNumber++;
                 }
             }
+            
             baiDanh = data;
             tcp.SendData(baiDanh);
 

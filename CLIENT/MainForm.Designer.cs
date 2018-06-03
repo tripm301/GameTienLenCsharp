@@ -13,34 +13,36 @@ using TINH_TONG_2_SO___ANTT;
 
 namespace CLIENT
 {
-	partial class MainForm
-	{
-		/// <summary>
-		/// Designer variable used to keep track of non-visual components.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
-		
-		/// <summary>
-		/// Disposes resources used by the form.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing) {
-				if (components != null) {
-					components.Dispose();
-				}
-			}
-			base.Dispose(disposing);
-		}
-		
-		/// <summary>
-		/// This method is required for Windows Forms designer support.
-		/// Do not change the method contents inside the source code editor. The Forms designer might
-		/// not be able to load this method if it was changed manually.
-		/// </summary>
-		private void InitializeComponent()
-		{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Designer variable used to keep track of non-visual components.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Disposes resources used by the form.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// This method is required for Windows Forms designer support.
+        /// Do not change the method contents inside the source code editor. The Forms designer might
+        /// not be able to load this method if it was changed manually.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -766,22 +768,22 @@ namespace CLIENT
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
-		
-		void MainFormLoad(object sender, System.EventArgs e)
-		{
-			CheckForIllegalCrossThreadCalls = false;
-            TurnOffCardTop();
-            
         }
-		
-		private TCPModel tcp;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+
+        void MainFormLoad(object sender, System.EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            TurnOffCardTop();
+
+        }
+
+        private TCPModel tcp;
         private Card[] cards = new Card[13];
         private Card[] chooseCard = new Card[13];
         private Card[] cardPlay = new Card[13];
@@ -790,7 +792,7 @@ namespace CLIENT
         private string baiDanh = null;
         PictureBox[] arrPic = new PictureBox[4];
         private int ID;//
-        private int soNguoiHienTai=0;
+        private int soNguoiHienTai = 0;
         void UpdatePic()
         {
             arrPic[0] = picPlayer1;
@@ -837,22 +839,22 @@ namespace CLIENT
             this.Close();
         }
         void Button1Click(object sender, System.EventArgs e)
-		{
-			//Step 1: Ket noi toi server
-			tcp = new TCPModel(textBox1.Text,int.Parse(textBox2.Text));
-			int flag = tcp.ConnectToServer();
+        {
+            //Step 1: Ket noi toi server
+            tcp = new TCPModel(textBox1.Text, int.Parse(textBox2.Text));
+            int flag = tcp.ConnectToServer();
             tcp.SendData("JOIN");
-			button1.Enabled = false;
+            button1.Enabled = false;
             Thread t = new Thread(ReceiveData);
             t.Start();
-		}
-		
-		void Button2Click(object sender, System.EventArgs e)
-		{
-			//step 2: Gui yeu cau server 
-			string str = "START";
-			int flag = tcp.SendData(str);
-		}
+        }
+
+        void Button2Click(object sender, System.EventArgs e)
+        {
+            //step 2: Gui yeu cau server 
+            string str = "START";
+            int flag = tcp.SendData(str);
+        }
 
         void ResetChooseCard()
         {
@@ -868,63 +870,73 @@ namespace CLIENT
                 string data = tcp.ReadData();
                 textBox5.Text = data;
                 string[] str = data.Split('_');
-<<<<<<< HEAD
-                switch (str[0]) {
-                    case "TABLE":
-                        {
-                            if (str[0] == "TABLE")
-                            {
-                                int soclient = int.Parse(str[1]);
-                                ID = soclient;
-                                if (soclient == 1)
-                                {
-                                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                                }
-                                if (soclient == 2)
-                                {
-                                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                                }
-                                if (soclient == 3)
-                                {
-                                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
-                                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                                }
-                                if (soclient == 4)
-                                {
-                                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
-                                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                                    picPlayer2.Image = CLIENT.Properties.Resources.Player1;
-                                }
+                //switch (str[0])
+                //{
+                //    case "TABLE":
+                //        {
+                //            if (str[0] == "TABLE")
+                //            {
+                //                int soclient = int.Parse(str[1]);
+                //                ID = soclient;
+                //                if (soclient == 1)
+                //                {
+                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
+                //                }
+                //                if (soclient == 2)
+                //                {
+                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
+                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
+                //                }
+                //                if (soclient == 3)
+                //                {
+                //                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
+                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
+                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
+                //                }
+                //                if (soclient == 4)
+                //                {
+                //                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
+                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
+                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
+                //                    picPlayer2.Image = CLIENT.Properties.Resources.Player1;
+                //                }
 
-                            }
-                            break;
-                        }
-                    case "JOIN":
-                        {
-                           
-                            for(int i = 0; i < 4; i++)
-                            {
-                                if (IsNullOrEmpty(arrPic[i]))
-                                {
-                                    arrPic[i].Image = CLIENT.Properties.Resources.Player1;
-                                    i = 5;
-                                }
-                            }
-                            soNguoiHienTai = ID + 1;
-                            break;
+                //            }
+                //            break;
+                //        }
+                //    case "JOIN":
+                //        {
 
-                        }
-                    case "START":
-                        {
-                            NhanBai(data);
+                //            for (int i = 0; i < 4; i++)
+                //            {
+                //                if (IsNullOrEmpty(arrPic[i]))
+                //                {
+                //                    arrPic[i].Image = CLIENT.Properties.Resources.Player1;
+                //                    i = 5;
+                //                }
+                //            }
+                //            soNguoiHienTai = ID + 1;
+                //            break;
 
-                            DrawSetCard();
-                            break;
-                        }
-=======
+                //        }
+                //    case "START":
+                //        {
+                //            NhanBai(data);
+
+                //            DrawSetCard();
+                //            break;
+                //        }
+                       
+
+                //        /* else
+                //         {
+                //             NhanBai(data);
+
+                //             DrawSetCard();
+
+                //         }*/
+
+                //}
                 if (str[0] == "TABLE")
                 {
 
@@ -936,24 +948,10 @@ namespace CLIENT
                     NhanBai(data);
                     PostCardPlaying(data);
                     DrawSetCard();
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
                 }
-                
-                /* else
-                 {
-                     NhanBai(data);
-
-                     DrawSetCard();
-
-                 }*/
-
             }
+
         }
-<<<<<<< HEAD
-        public bool IsNullOrEmpty( PictureBox pb)
-        {
-            return pb == null || pb.Image == null;
-=======
 
         public void PostCardPlaying(string data)
         {
@@ -961,7 +959,12 @@ namespace CLIENT
             Card card = new Card();
 
             string[] arrListStr = data.Split('_');
-            foreach (string item in arrListStr)
+            string[] arrList = new string[arrListStr.Length - 1];
+            for (int j = 0; j < arrListStr.Length - 1; j++)
+            {
+                arrList[j] = arrListStr[j + 1];
+            }
+            foreach (string item in arrList)
             {
                 if (i == 13)
                 {
@@ -985,16 +988,9 @@ namespace CLIENT
             pictureBox38.Image = DrawCard(cardPlay[11]);
             pictureBox39.Image = DrawCard(cardPlay[12]);
         }
-
-        public void DeletePictureBox()
+        public bool IsNullOrEmpty(PictureBox pb)
         {
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
+            return pb == null || pb.Image == null;
         }
         public void DrawSetCard()
         {
@@ -1032,17 +1028,17 @@ namespace CLIENT
             Card[] arrTemp = new Card[13];
             Card[] arrTemp2 = new Card[13];
             int j = 12;
-            
+
             for (int i = 12; i >= 0; i--)
             {
-                
-                if(chooseCard[i] != null)
+
+                if (chooseCard[i] != null)
                 {
                     arrTemp[j] = chooseCard[i];
                     j--;
                 }
             }
-           
+
             pictureBox27.Image = DrawCard(arrTemp[0]);
             pictureBox28.Image = DrawCard(arrTemp[1]);
             pictureBox29.Image = DrawCard(arrTemp[2]);
@@ -1060,38 +1056,35 @@ namespace CLIENT
             //Xóa bài đã đánh
             for (int i = 0; i < 13; i++)
             {
-                if(chooseCard[i] != null)
+                if (chooseCard[i] != null)
                 {
                     cards[i] = null;
-<<<<<<< HEAD
-                    
-=======
+
                     soBaiConLai--;
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
                 }
             }
             //Cập nhật lại bài hiện có
             int x = 12;
-            for(int i = 12; i >= 0; i--)
+            for (int i = 12; i >= 0; i--)
             {
-                if(cards[i] != null)
+                if (cards[i] != null)
                 {
                     arrTemp2[x] = cards[i];
                     x--;
                 }
             }
-            
-            
+
+
             for (int i = 0; i < 13; i++)
             {
                 if (arrTemp2[i] != null)
                 {
                     cards[i] = arrTemp2[i];
-                    
+
                 }
                 else
                 {
-                    cards[i] = null; 
+                    cards[i] = null;
                 }
             }
             TurnOffCardTop();
@@ -1099,7 +1092,7 @@ namespace CLIENT
             ResetChooseCard();
         }
 
-        
+
         public void NhanBai(string data)
         {
             int i = 0;
@@ -1107,7 +1100,7 @@ namespace CLIENT
 
             string[] arrListStr = data.Split('_');
             string[] arrList = new string[arrListStr.Length - 1];
-            for(int j = 0; j < arrListStr.Length - 1; j++)
+            for (int j = 0; j < arrListStr.Length - 1; j++)
             {
                 arrList[j] = arrListStr[j + 1];
             }
@@ -1122,9 +1115,9 @@ namespace CLIENT
             }
         }
 
-         Image DrawCard(Card card)
+        Image DrawCard(Card card)
         {
-           
+
             PictureBox pb = new PictureBox();
             pb.Visible = false;
             pb.Width = 161;

@@ -1,0 +1,9 @@
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csprojAssemblyReference.cache
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.MainForm.resources
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.Properties.Resources.resources
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.GenerateResource.cache
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.csproj.CoreCompileInputs.cache
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\bin\Debug\CLIENT.exe
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\bin\Debug\CLIENT.pdb
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.exe
+C:\Users\TRIPM\Documents\GitHub\GameTienLenCsharp\CLIENT\obj\Debug\CLIENT.pdb
