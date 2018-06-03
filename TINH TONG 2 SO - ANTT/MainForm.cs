@@ -43,7 +43,7 @@ namespace TINH_TONG_2_SO___ANTT
         private int soClientJoinTable = 0; //Số client đã tham gia vào bàn chơi
         private Table[] table=new Table[10];
         private int soTableNow=0;//Đối tượng bàn trong game
-		
+        private int[] luotDanh = new int[4];//Kiểm tra lượt đánh của client
 		public void KhoiDongServer(){			
 			tcp = new TCPModel(textBox1.Text,int.Parse(textBox2.Text));
 			button1.Enabled = false;
@@ -89,79 +89,26 @@ namespace TINH_TONG_2_SO___ANTT
                             Join(index);
                             break;
                         }
-                }
-                /*if (CHECK == "START")
-                {
-                    CardSet cardSet = new CardSet(); //tao bo bai
-                    Random random = new Random();
-                    Boolean duplicate = false; //bien kt random trung
-                    int[] arr = new int[52]; //Tao mang 52 phan tu de luu nhung so random
-                    string data1 = null;
-                    string data2 = null;
-                    string data3 = null;
-                    string data4 = null;
-                    for (int i = 0; i < 52; i++)
-                    {
-                        do
+                    case "DANH":
                         {
-                            duplicate = false;
-                            int j = random.Next(1, 53); //random 1 so, kt so do co chua, neu co roi thi random lai
-                            if (Timx(arr, j) == false)
-                            {
-                                if (i < 13)
-                                {
-                                    data1 += cardSet.output(cardSet.GetCard(j - 1));
-                                }
-                                else
-                                if (i < 26)
-                                {
-                                    data2 += cardSet.output(cardSet.GetCard(j - 1));
-                                }
-                                else
-                                if (i < 39)
-                                {
-                                    data3 += cardSet.output(cardSet.GetCard(j - 1));
-                                }
-                                else
-                                {
-                                    data4 += cardSet.output(cardSet.GetCard(j - 1));
-                                }
-                                arr[i] = j;
-                                duplicate = true;
-                            }
+                            Danh(index, soClientHienTai, str1);
+                            break;
                         }
-                        while (duplicate == false);
-                    }
-
-                    if (soClientHienTai == 4)
-                    {
-                        socket[0].SendData(data1);
-                        socket[1].SendData(data2);
-                        socket[2].SendData(data3);
-                        socket[3].SendData(data4);
-
-                    }
-                    else if (soClientHienTai == 3)
-                    {
-                        socket[0].SendData(data1);
-                        socket[1].SendData(data2);
-                        socket[2].SendData(data3);
-                    }
-                    else if (soClientHienTai == 2)
-                    {
-                        socket[0].SendData(data1);
-                        socket[1].SendData(data2);
-                    }
-                    else //th nay khong cho phep..de test thoi
-                    {
-                        socket[0].SendData(data1);
-                    }
-                    
-                }*/
+                }               
 
             }
 		}
-        
+        void Danh(int index,int soclient,string arr)
+        {
+            string str = "DANH_" + index + '_';
+            for(int i = 0; i < soclient; i++)
+            {
+                if (index != i)
+                {
+                    socket[i].SendData(str + arr);
+                }
+            }
+        }
         void Join(int index)
         {
             for(int i = 0; i < index; i++)

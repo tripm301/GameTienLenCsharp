@@ -878,6 +878,7 @@ namespace CLIENT
                                 ID = soclient;
                                 if (soclient == 1)
                                 {
+                                    button2.Text = "Bắt đầu";
                                     picPlayer1.Image = CLIENT.Properties.Resources.Me;
                                 }
                                 if (soclient == 2)
@@ -924,6 +925,13 @@ namespace CLIENT
                             DrawSetCard();
                             break;
                         }
+                    case "DANH":
+                        {
+                            string[] arr = RemoveStringData(3,str);
+                            string strDanh = AddStringArr(arr);
+                            PostCardPlaying(strDanh);
+                            break;
+                        }
                         /*
                         if (str[0] == "TABLE")
                         {
@@ -949,6 +957,26 @@ namespace CLIENT
 
                 }
             }
+        }
+        //Hàm cắt chuỗi string trong data nhận được
+        string[] RemoveStringData(int n,string[] data)//cắt bỏ n phần tử từ vị trí đầu tiên
+        {
+            string[] tem = new string[data.Length - n];
+            for (int i = 0; i < data.Length - n; i++)
+            {
+                tem[i] = data[n + i];
+            }
+            return tem;
+        }
+        //Hàm nối mảng thành chuỗi string
+        string AddStringArr(string[] data)
+        {
+            string tem="";
+            for(int i = 0; i < data.Length; i++)
+            {
+                tem =tem+ data[i] + '_';
+            }
+            return tem;
         }
         public bool IsNullOrEmpty( PictureBox pb)
             {
