@@ -870,72 +870,6 @@ namespace CLIENT
                 string data = tcp.ReadData();
                 textBox5.Text = data;
                 string[] str = data.Split('_');
-<<<<<<< HEAD
-                //switch (str[0])
-                //{
-                //    case "TABLE":
-                //        {
-                //            if (str[0] == "TABLE")
-                //            {
-                //                int soclient = int.Parse(str[1]);
-                //                ID = soclient;
-                //                if (soclient == 1)
-                //                {
-                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                //                }
-                //                if (soclient == 2)
-                //                {
-                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                //                }
-                //                if (soclient == 3)
-                //                {
-                //                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
-                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                //                }
-                //                if (soclient == 4)
-                //                {
-                //                    picPlayer3.Image = CLIENT.Properties.Resources.Player1;
-                //                    picPlayer4.Image = CLIENT.Properties.Resources.Player1;
-                //                    picPlayer1.Image = CLIENT.Properties.Resources.Me;
-                //                    picPlayer2.Image = CLIENT.Properties.Resources.Player1;
-                //                }
-
-                //            }
-                //            break;
-                //        }
-                //    case "JOIN":
-                //        {
-
-                //            for (int i = 0; i < 4; i++)
-                //            {
-                //                if (IsNullOrEmpty(arrPic[i]))
-                //                {
-                //                    arrPic[i].Image = CLIENT.Properties.Resources.Player1;
-                //                    i = 5;
-                //                }
-                //            }
-                //            soNguoiHienTai = ID + 1;
-                //            break;
-
-                //        }
-                //    case "START":
-                //        {
-                //            NhanBai(data);
-
-                //            DrawSetCard();
-                //            break;
-                //        }
-                       
-
-                //        /* else
-                //         {
-                //             NhanBai(data);
-
-                //             DrawSetCard();
-=======
-                //HEAD
                 switch (str[0]) {
                     case "TABLE":
                         {
@@ -983,23 +917,21 @@ namespace CLIENT
                             }
                             soNguoiHienTai = ID + 1;
                             break;
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
 
-                //         }*/
-
-<<<<<<< HEAD
-                //}
-                if (str[0] == "TABLE")
-                {
-=======
-                            DrawSetCard();
-                            break;
                         }
+                
                     case "DANH":
                         {
                             string[] arr = RemoveStringData(3,str);
                             string strDanh = AddStringArr(arr);
                             PostCardPlaying(strDanh);
+                            break;
+                        }
+                    case "START":
+                        {
+                            NhanBai(data);
+
+                            DrawSetCard();
                             break;
                         }
                         /*
@@ -1033,12 +965,12 @@ namespace CLIENT
 
                          }*/
 
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
+
                 }
             }
 
         }
-<<<<<<< HEAD
+
         //Hàm cắt chuỗi string trong data nhận được
         string[] RemoveStringData(int n,string[] data)//cắt bỏ n phần tử từ vị trí đầu tiên
         {
@@ -1059,15 +991,13 @@ namespace CLIENT
             }
             return tem;
         }
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 8d409f34c46789ccefc5251f8f04b4977a7e0fa9
+
+
         public bool IsNullOrEmpty( PictureBox pb)
             {
                 return pb == null || pb.Image == null;
             }
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
+
 
         public void PostCardPlaying(string data)
         {
@@ -1104,12 +1034,8 @@ namespace CLIENT
             pictureBox38.Image = DrawCard(cardPlay[11]);
             pictureBox39.Image = DrawCard(cardPlay[12]);
         }
-<<<<<<< HEAD
-        public bool IsNullOrEmpty(PictureBox pb)
-        {
-            return pb == null || pb.Image == null;
-        }
-=======
+
+
 
         /*public void DeletePictureBox()
         {
@@ -1120,7 +1046,7 @@ namespace CLIENT
             pictureBox27.Image = null;
             pictureBox27.Image = null;
 */
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
+
         public void DrawSetCard()
         {
             pictureBox1.Image = DrawCard(cards[0]);
@@ -1190,10 +1116,6 @@ namespace CLIENT
                     cards[i] = null;
 
                     soBaiConLai--;
-<<<<<<< HEAD
-=======
-
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
                 }
             }
             //Cập nhật lại bài hiện có
