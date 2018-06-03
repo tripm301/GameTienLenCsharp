@@ -319,5 +319,10 @@ namespace CLIENT
         {
 
         }
+
+        private void pictureBox32_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

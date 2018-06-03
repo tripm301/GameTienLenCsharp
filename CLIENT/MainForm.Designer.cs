@@ -559,6 +559,7 @@ namespace CLIENT
             this.pictureBox32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox32.TabIndex = 47;
             this.pictureBox32.TabStop = false;
+            this.pictureBox32.Click += new System.EventHandler(this.pictureBox32_Click);
             // 
             // pictureBox33
             // 
@@ -791,8 +792,26 @@ namespace CLIENT
         private int soBaiConLai = 13;
         private string baiDanh = null;
         PictureBox[] arrPic = new PictureBox[4];
+        PictureBox[] arrPicShow = new PictureBox[13];//Quản lí các con bài hiện khi đánh
+
         private int ID;//
         private int soNguoiHienTai = 0;
+       void UpdatePicShow()
+        {
+            arrPicShow[0] = pictureBox27;
+            arrPicShow[1] = pictureBox28;
+            arrPicShow[2] = pictureBox29;
+            arrPicShow[3] = pictureBox30;
+            arrPicShow[4] = pictureBox31;
+            arrPicShow[5] = pictureBox32;
+            arrPicShow[6] = pictureBox33;
+            arrPicShow[7] = pictureBox34;
+            arrPicShow[8] = pictureBox35;
+            arrPicShow[9] = pictureBox36;
+            arrPicShow[10] = pictureBox37;
+            arrPicShow[11] = pictureBox38;
+            arrPicShow[12] = pictureBox39;
+        }
         void UpdatePic()
         {
             arrPic[0] = picPlayer1;
@@ -867,6 +886,7 @@ namespace CLIENT
             while (true)
             {
                 UpdatePic();
+                UpdatePicShow();
                 string data = tcp.ReadData();
                 textBox5.Text = data;
                 string[] str = data.Split('_');
@@ -922,9 +942,11 @@ namespace CLIENT
                 
                     case "DANH":
                         {
-                            string[] arr = RemoveStringData(3,str);
+                            string[] arr = RemoveStringData(2,str);
                             string strDanh = AddStringArr(arr);
+                            DeletePicture();
                             PostCardPlaying(strDanh);
+                            
                             break;
                         }
                     case "START":
@@ -987,7 +1009,14 @@ namespace CLIENT
             string tem="";
             for(int i = 0; i < data.Length; i++)
             {
-                tem =tem+ data[i] + '_';
+                if (data[i] != "_"&&i!=data.Length-1)
+                {
+                    tem = tem + data[i] + '_';
+                }
+                if (i == data.Length - 1)
+                {
+                    tem = tem + data[i];
+                }
             }
             return tem;
         }
@@ -1001,7 +1030,7 @@ namespace CLIENT
 
         public void PostCardPlaying(string data)
         {
-            int i = 0;
+            int i = 12;
             Card card = new Card();
 
             string[] arrListStr = data.Split('_');
@@ -1010,16 +1039,26 @@ namespace CLIENT
             {
                 arrList[j] = arrListStr[j + 1];
             }
-            foreach (string item in arrList)
+            /* foreach (string item in arrList)
+             {
+                 if (i == 13||item=="")
+                 {
+                     break;
+                 }
+                 cardPlay[i] = card.input(item);
+                 i--;
+             }8*/
+            int tem = 0;
+            for(int j = 0; j < 13; j++)
             {
-                if (i == 13)
-                {
-                    break;
-                }
-                cardPlay[i] = card.input(item);
-                i++;
+                cardPlay[i] = null;
             }
-
+            for (int j = 13 - arrList.Length + 1; j < 13; j++)
+            {
+             
+                cardPlay[j] = card.input(arrList[tem]);
+                tem++;
+            }
             pictureBox27.Image = DrawCard(cardPlay[0]);
             pictureBox28.Image = DrawCard(cardPlay[1]);
             pictureBox29.Image = DrawCard(cardPlay[2]);
@@ -1037,15 +1076,13 @@ namespace CLIENT
 
 
 
-        /*public void DeletePictureBox()
+        public void DeletePicture()
         {
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-            pictureBox27.Image = null;
-*/
+            for (int i = 0; i < 13; i++)
+            {
+                cardPlay[i] = null;
+            }
+        }
 
         public void DrawSetCard()
         {
