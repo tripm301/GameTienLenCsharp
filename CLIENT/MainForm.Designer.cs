@@ -868,7 +868,7 @@ namespace CLIENT
                 string data = tcp.ReadData();
                 textBox5.Text = data;
                 string[] str = data.Split('_');
-<<<<<<< HEAD
+                //HEAD
                 switch (str[0]) {
                     case "TABLE":
                         {
@@ -904,8 +904,8 @@ namespace CLIENT
                         }
                     case "JOIN":
                         {
-                           
-                            for(int i = 0; i < 4; i++)
+
+                            for (int i = 0; i < 4; i++)
                             {
                                 if (IsNullOrEmpty(arrPic[i]))
                                 {
@@ -924,36 +924,36 @@ namespace CLIENT
                             DrawSetCard();
                             break;
                         }
-=======
-                if (str[0] == "TABLE")
-                {
+                        /*
+                        if (str[0] == "TABLE")
+                        {
 
+
+                        }
+
+                        else
+                        {
+                            NhanBai(data);
+                            PostCardPlaying(data);
+                            DrawSetCard();
+
+                        }*/
+
+                        /* else
+                         {
+                             NhanBai(data);
+
+                             DrawSetCard();
+
+                         }*/
 
                 }
-
-                else
-                {
-                    NhanBai(data);
-                    PostCardPlaying(data);
-                    DrawSetCard();
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
-                }
-                
-                /* else
-                 {
-                     NhanBai(data);
-
-                     DrawSetCard();
-
-                 }*/
-
             }
         }
-<<<<<<< HEAD
         public bool IsNullOrEmpty( PictureBox pb)
-        {
-            return pb == null || pb.Image == null;
-=======
+            {
+                return pb == null || pb.Image == null;
+            }
 
         public void PostCardPlaying(string data)
         {
@@ -986,7 +986,7 @@ namespace CLIENT
             pictureBox39.Image = DrawCard(cardPlay[12]);
         }
 
-        public void DeletePictureBox()
+        /*public void DeletePictureBox()
         {
             pictureBox27.Image = null;
             pictureBox27.Image = null;
@@ -994,8 +994,7 @@ namespace CLIENT
             pictureBox27.Image = null;
             pictureBox27.Image = null;
             pictureBox27.Image = null;
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
-        }
+*/
         public void DrawSetCard()
         {
             pictureBox1.Image = DrawCard(cards[0]);
@@ -1063,11 +1062,9 @@ namespace CLIENT
                 if(chooseCard[i] != null)
                 {
                     cards[i] = null;
-<<<<<<< HEAD
-                    
-=======
+
                     soBaiConLai--;
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
+
                 }
             }
             //Cập nhật lại bài hiện có

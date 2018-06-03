@@ -268,13 +268,8 @@ namespace CLIENT
 
         private void button4_Click(object sender, EventArgs e) //Nút đánh
         {
-<<<<<<< HEAD
-            string data = "DANH_";
-=======
-            string data = null;
 
->>>>>>> ba5dd76be8ec3a5921580339d2e7b64f4493a40d
-            
+            string data = "DANH_";         
             foreach (Card item in chooseCard)
             {
                 if (item != null)
