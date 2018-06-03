@@ -268,6 +268,7 @@ namespace CLIENT
 
         private void button4_Click(object sender, EventArgs e) //Nút đánh
         {
+<<<<<<< HEAD
 
             string data = "DANH_";
 
@@ -275,6 +276,10 @@ namespace CLIENT
             Card[] arrTemp = new Card[13];
 
             int x = 12;
+=======
+
+            string data = "DANH_";         
+>>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
             foreach (Card item in chooseCard)
             {
                 if(item != null)
