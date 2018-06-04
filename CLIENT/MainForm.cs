@@ -313,11 +313,16 @@ namespace CLIENT
 
             //*****
             PostCard();
+            button4.Enabled = false;
+            btnBoLuoc.Enabled = false;
         }
 
         private void btnBoLuoc_Click(object sender, EventArgs e)
         {
-
+            button4.Enabled = false;
+            btnBoLuoc.Enabled = false;
+            tcp.SendData("BOLUOC_" +ID);
+            
         }
 
         private void pictureBox32_Click(object sender, EventArgs e)

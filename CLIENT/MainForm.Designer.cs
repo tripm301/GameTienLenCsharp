@@ -781,9 +781,9 @@ namespace CLIENT
         {
             CheckForIllegalCrossThreadCalls = false;
             TurnOffCardTop();
-
+            button2.Visible = false;
         }
-
+  
         private TCPModel tcp;
         private Card[] cards = new Card[13];
         private Card[] chooseCard = new Card[13];
@@ -793,8 +793,8 @@ namespace CLIENT
         private string baiDanh = null;
         PictureBox[] arrPic = new PictureBox[4];
         PictureBox[] arrPicShow = new PictureBox[13];//Quản lí các con bài hiện khi đánh
-
-        private int ID;//
+        private int luotDanh;
+        private int ID;// Định danh client
         private int soNguoiHienTai = 0;
        void UpdatePicShow()
         {
@@ -863,6 +863,7 @@ namespace CLIENT
             tcp = new TCPModel(textBox1.Text, int.Parse(textBox2.Text));
             int flag = tcp.ConnectToServer();
             tcp.SendData("JOIN");
+            luotDanh = 1;
             button1.Enabled = false;
             Thread t = new Thread(ReceiveData);
             t.Start();
@@ -885,6 +886,7 @@ namespace CLIENT
         {
             while (true)
             {
+                
                 UpdatePic();
                 UpdatePicShow();
                 string data = tcp.ReadData();
@@ -896,25 +898,29 @@ namespace CLIENT
                             if (str[0] == "TABLE")
                             {
                                 int soclient = int.Parse(str[1]);
-                                ID = soclient;
+                                ID = soclient-1;
                                 if (soclient == 1)
                                 {
+                                    button2.Visible = true;
                                     button2.Text = "Bắt đầu";
                                     picPlayer1.Image = CLIENT.Properties.Resources.Me;
                                 }
                                 if (soclient == 2)
                                 {
+                                    
                                     picPlayer4.Image = CLIENT.Properties.Resources.Player1;
                                     picPlayer1.Image = CLIENT.Properties.Resources.Me;
                                 }
                                 if (soclient == 3)
                                 {
+                                    
                                     picPlayer3.Image = CLIENT.Properties.Resources.Player1;
                                     picPlayer4.Image = CLIENT.Properties.Resources.Player1;
                                     picPlayer1.Image = CLIENT.Properties.Resources.Me;
                                 }
                                 if (soclient == 4)
                                 {
+                                    
                                     picPlayer3.Image = CLIENT.Properties.Resources.Player1;
                                     picPlayer4.Image = CLIENT.Properties.Resources.Player1;
                                     picPlayer1.Image = CLIENT.Properties.Resources.Me;
@@ -926,7 +932,7 @@ namespace CLIENT
                         }
                     case "JOIN":
                         {
-
+                            
                             for (int i = 0; i < 4; i++)
                             {
                                 if (IsNullOrEmpty(arrPic[i]))
@@ -935,9 +941,8 @@ namespace CLIENT
                                     i = 5;
                                 }
                             }
-                            soNguoiHienTai = ID + 1;
+                            
                             break;
-
                         }
                 
                     case "DANH":
@@ -946,7 +951,25 @@ namespace CLIENT
                             string strDanh = AddStringArr(arr);
                             DeletePicture();
                             PostCardPlaying(strDanh);
-                            
+                            int id = int.Parse(str[1])+1;
+                            textBox5.AppendText(id.ToString()+"ID "+ID+"  So nguoi đứng sau "+soNguoiHienTai+" LD "+luotDanh);
+                            if (ID == id&&luotDanh==1)
+                            {
+                                button4.Enabled = true;
+                                btnBoLuoc.Enabled = true;
+                            }
+                            else
+                            {
+                                if (id == soNguoiHienTai)
+                                {
+                                    if (ID == 0 && luotDanh == 1)
+                                    {
+                                        button4.Enabled = true;
+                                        btnBoLuoc.Enabled = true;
+                                    }
+                                }
+                              
+                            }
                             break;
                         }
                     case "START":
@@ -956,43 +979,41 @@ namespace CLIENT
                             DrawSetCard();
                             break;
                         }
-                        /*
-                        if (str[0] == "TABLE")
+                    case "LUOTDANH":
                         {
->>>>>>> 15e529916c98008e7d85e7e1ef7d60d31ae7c6ae
-
-
+                            if (luotDanh == 1)
+                            {
+                                button4.Enabled = true;
+                                btnBoLuoc.Enabled = true;
+                            
+                            }
+                            else
+                            {
+                                button4.Enabled = false;
+                                btnBoLuoc.Enabled = false;
+                                tcp.SendData("BOLUOC_" + ID);
+                            }
+                            break;
                         }
-
-<<<<<<< HEAD
-                else
-                {
-                    NhanBai(data);
-                    PostCardPlaying(data);
-                    DrawSetCard();
-=======
-                        else
+                    case "SO":
                         {
-                            NhanBai(data);
-                            PostCardPlaying(data);
-                            DrawSetCard();
-
-                        }*/
-
-                        /* else
-                         {
-                             NhanBai(data);
-
-                             DrawSetCard();
-
-                         }*/
-
-
+                            soNguoiHienTai = int.Parse(str[1]);
+                            break;
+                        }
                 }
             }
 
         }
-
+        void OffPlay()//Tắt các nút đánh của client
+        {
+            button4.Enabled = false;
+            btnBoLuoc.Enabled = false;
+        }
+        void OnPlay()
+        {
+            button4.Enabled = true;
+            btnBoLuoc.Enabled = true;
+        }
         //Hàm cắt chuỗi string trong data nhận được
         string[] RemoveStringData(int n,string[] data)//cắt bỏ n phần tử từ vị trí đầu tiên
         {
